@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nuttida Portfolio</title>
+
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- CSS ของเรา -->
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- Navbar -->
+
+<nav class="navbar">
+
+<h1 class="logo">Nuttida</h1>
+
+<ul class="menu">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+
+<!-- Home -->
+
+<section id="home" class="home">
+
+<h2>Hello I'm</h2>
+
+<h1>Nuttida</h1>
+
+<p>Web Developer | Data Enthusiast</p>
+
+<button onclick="showMessage()" class="btn">
+Contact Me
+</button>
+
+</section>
+
+
+<!-- About -->
+
+<section id="about" class="section">
+
+<h2>About Me</h2>
+
+<p>
+I enjoy building websites and learning new technologies.
+I have experience with Java, Node.js and web development.
+</p>
+
+</section>
+
+
+<!-- Projects -->
+
+<section id="projects" class="section">
+
+<h2>Projects</h2>
+
+<div class="project-container">
+
+<div class="project-card">
+<h3>Dormitory Security System</h3>
+<p>Java OOP project for dormitory access.</p>
+</div>
+
+<div class="project-card">
+<h3>Compound Security System</h3>
+<p>Resident and staff management system.</p>
+</div>
+
+<div class="project-card">
+<h3>Workout Website</h3>
+<p>HTML CSS JavaScript and Node.js project.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- Contact -->
+
+<section id="contact" class="section">
+
+<h2>Contact</h2>
+
+<input type="text" placeholder="Your Name">
+
+<input type="email" placeholder="Email">
+
+<button onclick="sendMessage()" class="btn">
+Send Message
+</button>
+
+</section>
+
+
+<footer>
+
+<p>© 2026 Nuttida Portfolio</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
