@@ -6,10 +6,11 @@ document.querySelector(".logo").addEventListener("click", () => {
 
 const slides = document.querySelectorAll(".bg-slide");
 const bgImages = [
-    "img/1.jpg",
-    "img/2.jpg",
-    "img/3.jpg",
-    "img/4.jpg"
+    "Img Portfolio/1.jpg",
+    "Img Portfolio/2.jpg",
+    "Img Portfolio/3.jpg",
+    "Img Portfolio/4.jpg",
+    "Img Portfolio/672110231.jpg"
 ];
 
 let current = 0;
