@@ -23,28 +23,10 @@
             });
         });
     }
-
-    var slides = document.querySelectorAll('.slide-bg');
-    var counter = document.getElementById('slideCounter');
-    slides.forEach(function (s) {
-        if (s.dataset.src) s.style.backgroundImage = "url('" + s.dataset.src + "')";
-    });
-    var current = 0;
-    function showSlide(i) {
-        slides.forEach(function (s, idx) {
-            s.classList.toggle('active', idx === i);
-        });
-        if (counter) {
-            counter.textContent =
-                String(i + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
-        }
-    }
-    if (slides.length) {
-        showSlide(0);
-        setInterval(function () {
-            current = (current + 1) % slides.length;
-            showSlide(current);
-        }, 3500);
+    var slide = document.querySelector('.slide-bg');
+    if (slide && slide.dataset.src) {
+    slide.style.backgroundImage = "url('" + slide.dataset.src + "')";
+    slide.classList.add('active');
     }
 
     var track = document.getElementById('perfTrack');
