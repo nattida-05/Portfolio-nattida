@@ -214,7 +214,7 @@ nav ul a:hover { color: var(--ink); }
     color: var(--muted);
     text-transform: uppercase;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 16px;
     margin-bottom: 64px;
 }
