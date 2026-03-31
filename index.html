@@ -1,156 +1,221 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROFILE NATTHIDA</title>
-    <link rel="stylesheet" href="Portfolion.css">
+    <title>Natthida — Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
-    <!-- เมนูนำทาง -->
-    <nav>
-        <div class="logo">PROFILE NATTHIDA</div>
-        <ul>
-            <li><a href="#about">ABOUT ME</a></li>
-            <li><a href="#skills">SKILL</a></li>
-            <li><a href="#performance">PERFORMANCE</a></li>
-            <li><a href="#contact">CONTACT</a></li>
-        </ul>
+    <nav id="mainNav">
+        <div class="logo">Natthida</div>
+        <div class="nav-end">
+            <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNavList">☰</button>
+            <ul id="mainNavList">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#performance">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <!-- ส่วน Header -->
     <header class="hero">
-        <div class="bg-slide"></div>
-        <div class="bg-slide"></div>
-        <div class="bg-slide"></div>
-        <div class="bg-slide"></div>
-
-        <h1>Hello, I am <span>NATTHIDA</span></h1>
-        <p>Web Developer | UI/UX Designer | Student</p>
-        <a href="#contact" class="btn">CONTACT ME</a>
+        <div class="hero-left">
+            <div class="hero-eyebrow">Portfolio — 2026</div>
+            <h1 class="hero-name">
+                Natth<em>ida</em><br>Tanorthong
+            </h1>
+            <div class="hero-roles">
+                <span>Web Developer</span>
+                <span>UI / UX Designer</span>
+                <span>Digital Industrial Integration</span>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="slide-bg" data-src="img/1.jpg"></div>
+            <div class="slide-bg" data-src="img/2.jpg"></div>
+            <div class="slide-bg" data-src="img/3.jpg"></div>
+            <div class="slide-bg" data-src="img/4.jpg"></div>
+            <div class="slide-counter" id="slideCounter">01 / 04</div>
+        </div>
     </header>
 
-    <!-- เกี่ยวกับฉัน -->
-    <section id="about">
-        <h2>
-           <p>ABOUT ME</p>
-        </h2>
-        <p>
-            I am a second-year student in the College of Arts, Media and Technology, majoring in Digital Industrial Integration, and currently in the process of being a web developer intern.
-        </p>
-    </section>
-
-    <!-- ทักษะ -->
-    <section id="skills">
-        <h2>
-            <p>SKILL</p>
-        </h2>
-        <div class="skill-list">
-            <div class="skill">HTML / CSS</div>
-            <div class="skill">Java</div>
-            <div class="skill">UI/UX Design</div>
-            <div class="skill">QA Testing</div>
+    <section id="about" class="section">
+        <div class="section-label">About Me</div>
+        <div class="about-grid fade-in">
+            <div class="about-number">01</div>
+            <div>
+                <p class="about-text">
+                    A second-year student at the College of Arts, Media and Technology, majoring in
+                    <em>Digital Industrial Integration</em> — currently growing as a web developer intern.
+                </p>
+                <div class="about-meta">
+                    <span>Chiang Mai University</span>
+                    <span>Year 2 · Internship in Progress</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Performance -->
-    <section id="performance">
-        <h2>
-            <p>PERFORMANCE</p>
-        </h2>
-        <div class="performance-container">
-            <button class="scroll-btn left">&#10094;</button>
+    <section id="skills" class="section" style="padding-top:0; border-top: 1px solid var(--line);">
+        <div class="section-label">Skills</div>
+        <div class="skills-grid fade-in">
+            <div class="skill-item">
+                <span class="skill-num">01</span>
+                <span class="skill-name">HTML / CSS</span>
+            </div>
+            <div class="skill-item">
+                <span class="skill-num">02</span>
+                <span class="skill-name">Java</span>
+            </div>
+            <div class="skill-item">
+                <span class="skill-num">03</span>
+                <span class="skill-name">UI / UX Design</span>
+            </div>
+            <div class="skill-item">
+                <span class="skill-num">04</span>
+                <span class="skill-name">QA Testing</span>
+            </div>
+        </div>
+    </section>
 
-            <div class="performance-grid">
-                <div class="card" onclick="openImage('Img Portfolio/ProductProject.png')">
-                    <img src="Img Portfolio/ProductProject.png" alt="Project 1">
-                    <h3>Website of the Babor Core Teak Project Group</h3>
-                    <p>Show product information on the website</p>
-                </div>
-                <div class="card" onclick="openImage('Img Portfolio/เข้าระบบ.png')">
-                    <img src="Img Portfolio/เข้าระบบ.png" alt="Project 2">
-                    <h3>Login web page</h3>
-                    <p>Collect website visitor information</p>
-                </div>
-                <div class="card" onclick="openImage('Img Portfolio/open1.png')">
-                    <img src="Img Portfolio/open1.png" alt="Project 3">
-                    <h3>Poster design</h3>
-                    <p>Poster design</p>
-                </div>
-                <div class="card" onclick="openImage('Img Portfolio/open2.png')">
-                    <img src="Img Portfolio/open2.png" alt="Project 4">
-                    <h3>Poster design</h3>
-                    <p>Poster design</p>
-                </div>
-                <div class="card" onclick="openImage('Img Portfolio/แสงสุดท้าย.png')">
-                    <img src="Img Portfolio/แสงสุดท้าย.png" alt="Project 5">
-                    <h3>Design logo website</h3>
-                    <p>Design a website logo, Last Light</p>
-                </div>
-            <div class="card">
+    <section id="performance" class="section" style="border-top: 1px solid var(--line);">
+        <div class="section-label">Selected Work</div>
+        <div class="fade-in">
+            <div class="perf-track" id="perfTrack">
 
-                <a href="https://www.figma.com/design/wrozG13k9F1jKYnnvpLTi3/CourseReviewHub?node-id=35-20&t=zkHQ1w77TxgXyr7b-1" target="_blank">
-                    <img src="Img Portfolio/CourseReviewHub.png">
+                <div class="perf-card" data-lightbox-src="img/ProductProject.png" role="button" tabindex="0">
+                    <img class="perf-card-img" src="img/ProductProject.png" alt="Project 1">
+                    <div class="perf-card-body">
+                        <p class="perf-card-tag">Web · Product</p>
+                        <h3 class="perf-card-title">Babor Core Teak — Product Website</h3>
+                    </div>
+                </div>
+
+                <div class="perf-card" data-lightbox-src="img/เข้าระบบ.png" role="button" tabindex="0">
+                    <img class="perf-card-img" src="img/เข้าระบบ.png" alt="Project 2">
+                    <div class="perf-card-body">
+                        <p class="perf-card-tag">Web · Auth</p>
+                        <h3 class="perf-card-title">Login Web Page</h3>
+                    </div>
+                </div>
+
+                <div class="perf-card" data-lightbox-src="img/open1.png" role="button" tabindex="0">
+                    <img class="perf-card-img" src="img/open1.png" alt="Project 3">
+                    <div class="perf-card-body">
+                        <p class="perf-card-tag">Design · Print</p>
+                        <h3 class="perf-card-title">Poster Design I</h3>
+                    </div>
+                </div>
+
+                <div class="perf-card" data-lightbox-src="img/open2.png" role="button" tabindex="0">
+                    <img class="perf-card-img" src="img/open2.png" alt="Project 4">
+                    <div class="perf-card-body">
+                        <p class="perf-card-tag">Design · Print</p>
+                        <h3 class="perf-card-title">Poster Design II</h3>
+                    </div>
+                </div>
+
+                <div class="perf-card" data-lightbox-src="img/แสงสุดท้าย.png" role="button" tabindex="0">
+                    <img class="perf-card-img" src="img/แสงสุดท้าย.png" alt="Project 5">
+                    <div class="perf-card-body">
+                        <p class="perf-card-tag">Design · Branding</p>
+                        <h3 class="perf-card-title">Last Light — Logo Design</h3>
+                    </div>
+                </div>
+
+                <a class="perf-card"
+                   href="https://www.figma.com/design/wrozG13k9F1jKYnnvpLTi3/CourseReviewHub?node-id=35-20&t=zkHQ1w77TxgXyr7b-1"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <img class="perf-card-img" src="img/CourseReviewHub.png" alt="CourseReviewHub">
+                    <div class="perf-card-body">
+                        <p class="perf-card-tag">UI/UX · Hackathon</p>
+                        <h3 class="perf-card-title">CourseReviewHub — UI Design</h3>
+                        <span class="perf-card-link">
+                            View Figma
+                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+                                <path d="M1 4H11M11 4L8 1M11 4L8 7" stroke="currentColor" stroke-width="1.2"/>
+                            </svg>
+                        </span>
+                    </div>
                 </a>
-                <h3>CourseReviewHub Website UI Design (Hackathon Project)</h3>
-                <p>
-                    <a href="https://www.figma.com/design/wrozG13k9F1jKYnnvpLTi3/CourseReviewHub?node-id=35-20&t=zkHQ1w77TxgXyr7b-1" target="_blank">
-                        View Figma Design</a>
-                    </p>
+
             </div>
+            <div class="perf-nav">
+                <button type="button" id="btnLeft" aria-label="Scroll left">
+                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                        <path d="M15 6H1M1 6L6 1M1 6L6 11" stroke="currentColor" stroke-width="1.2"/>
+                    </svg>
+                </button>
+                <button type="button" id="btnRight" aria-label="Scroll right">
+                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" aria-hidden="true">
+                        <path d="M1 6H15M15 6L10 1M15 6L10 11" stroke="currentColor" stroke-width="1.2"/>
+                    </svg>
+                </button>
             </div>
-
-            <button class="scroll-btn right">&#10095;</button>
-        </div>
-<section id="production">
-    <h2>
-        <p>PRODUCTION</p>
-    </h2>
-    <div class="production-grid">
-
-        <div class="production-card">
-            <a href="https://www.figma.com/design/jTqM0CQzukGGBxBqasG8wC/NInjaLingo?node-id=0-1&t=rn3SFWYzCJHr28Ru-1" target="_blank">
-                <img src="Img Portfolio/ninja.png" alt="NinjaLingo">
-            </a>
-
-            <h3>NinjaLingo Website Design</h3>
-            <p>Language learning platform UI design</p>
-
-            <a class="view-btn"
-            href="https://www.figma.com/design/jTqM0CQzukGGBxBqasG8wC/NInjaLingo?node-id=0-1&t=rn3SFWYzCJHr28Ru-1"
-            target="_blank">
-            View Figma Design
-            </a>
-
-        </div>
-
-    </div>
-</section>
-
         </div>
     </section>
 
-  <!-- CONTACT -->
-<section id="contact">
-    <h2>
-        <p>CONTACT</p>
-    </h2>
-
-    <div class="contact-info">
-
-        <p>Email : i.ampeba55@email.com</p>
-        <p>Line:aumthanothong</p>
-        <p>Phone : 090-029-5341</p>
-        </p>
-
+    <div class="production-section" id="production">
+        <div class="production-inner">
+            <div class="section-label">Production</div>
+            <div class="prod-card fade-in">
+                <div class="prod-card-img-wrap">
+                    <img src="img/ninja.png" alt="NinjaLingo">
+                </div>
+                <div class="prod-card-body">
+                    <p class="prod-card-tag">UI/UX · Language Platform</p>
+                    <h3 class="prod-card-title">NinjaLingo Website Design</h3>
+                    <p class="prod-card-desc">A language learning platform UI/UX design — clean, engaging, and built for modern learners.</p>
+                    <a class="prod-btn"
+                       href="https://www.figma.com/design/jTqM0CQzukGGBxBqasG8wC/NInjaLingo?node-id=0-1&t=rn3SFWYzCJHr28Ru-1"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        View Figma Design
+                        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">
+                            <path d="M1 5H13M13 5L9 1M13 5L9 9" stroke="currentColor" stroke-width="1.2"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-</section>
+
+    <section id="contact" class="section" style="border-top: 1px solid var(--line);">
+        <div class="section-label">Get in Touch</div>
+        <div class="contact-grid fade-in">
+            <h2 class="contact-heading">Let's<br>work<br><em>together.</em></h2>
+            <div class="contact-items">
+                <div class="contact-item">
+                    <span class="contact-label">Email</span>
+                    <span class="contact-value">i.ampeba55@email.com</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Line</span>
+                    <span class="contact-value">aumthanothong</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Phone</span>
+                    <span class="contact-value">090-029-5341</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        <p>@NATTHIDA TANORTHONG</p>
+        <span>© 2026 Natthida Tanorthong</span>
+        <span>Web Developer · UI/UX Designer</span>
     </footer>
 
-    <script src="Portfolion.js"></script>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+        <button type="button" class="lightbox-close">✕ Close</button>
+        <img id="lightboxImg" src="" alt="">
+    </div>
+
+    <script src="js/main.js" defer></script>
 </body>
 </html>
