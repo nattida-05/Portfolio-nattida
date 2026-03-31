@@ -257,6 +257,7 @@ nav ul a:hover { color: var(--ink); }
 
 .about-meta {
     margin-top: 32px;
+    text-align: center;
     display: flex;
     flex-direction: column;
     gap: 6px;
