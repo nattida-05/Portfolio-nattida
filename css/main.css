@@ -266,7 +266,17 @@ nav ul a:hover { color: var(--ink); }
     letter-spacing: 0.15em;
     color: var(--muted);
 }
-
+.about-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 60px;
+    align-items: start;
+}
+.about-image{
+    width: 260px;
+    height: auto;
+    object-fit: cover;
+}
 /* SKILLS */
 #skills { border-top: 1px solid var(--line); }
 
