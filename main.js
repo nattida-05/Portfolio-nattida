@@ -1,6 +1,24 @@
 (function () {
     'use strict';
 
+    // PRELOADER — unlock the page once the intro finishes
+    var preloader = document.getElementById('preloader');
+    if (preloader) {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var done = reduce ? 900 : 4200;
+        var finish = function () {
+            preloader.classList.add('pl-done');
+            document.body.classList.remove('is-loading');
+        };
+        window.setTimeout(finish, done);
+        // safety net if a CSS animation never fires
+        preloader.addEventListener('animationend', function (e) {
+            if (e.target === preloader) finish();
+        });
+    } else {
+        document.body.classList.remove('is-loading');
+    }
+
     const nav = document.getElementById('mainNav');
     const navToggle = document.querySelector('.nav-toggle');
 
