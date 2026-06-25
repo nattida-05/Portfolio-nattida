@@ -93,8 +93,45 @@ nav ul a:hover { color: var(--ink); }
 .hero {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     padding-top: 85px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* แบ็คกราวด์รูปเต็มจอของหน้าโฮม */
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+/* ฝ้าทึบบางๆ ทับรูป เพื่อให้อ่านตัวหนังสือง่ายขึ้น (ปรับค่า 0.45 ได้) */
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.hero-left {
+    position: relative;
+    z-index: 1;
+}
+
+/* ทำให้ตัวหนังสือบนรูปแบ็คกราวด์อ่านชัดครบทุกตัว */
+.hero .hero-name {
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.hero .hero-eyebrow,
+.hero .hero-roles span {
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
 }
 
 .hero-left {
@@ -102,7 +139,6 @@ nav ul a:hover { color: var(--ink); }
     flex-direction: column;
     justify-content: flex-end;
     padding: 80px 64px;
-    border-right: 1px solid var(--line);
 }
 
 .hero-eyebrow {
