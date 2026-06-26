@@ -1,12 +1,12 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Jersey+25&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jersey+25&family=VT323&display=swap');
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
     --bg: #ffffff;
     --ink: #0c0c0c;
     --muted: #8a8a8a;
-    --line: #e4e4e4;
+    --line: #dedede;
     --accent: #2a2a2a;
 }
 
@@ -277,9 +277,24 @@ nav ul a:hover { color: var(--ink); }
 /* ABOUT */
 
 .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 48px;
+}
+
+.about-img-col {
     display: flex;
-    flex-direction: column;
-    align-items: C;
+    justify-content: center;
+}
+
+.about-img {
+    width: 100%;
+    height: 100%;
+    max-height: 460px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
 }
 
 .about-number {
@@ -291,28 +306,28 @@ nav ul a:hover { color: var(--ink); }
 }
 
 .about-text {
-    font-family: "Jersey 25", sans-serif;
+    font-family: "Fira Sans", sans-serif;
     font-size: 28px;
     font-weight: 300;
     line-height: 1.65;
     color: var(--ink);
-    text-align: center;   
-    max-width: 700px;     
-    margin: 0 auto;       
+    text-align: left;
+    max-width: 700px;
+    margin: 0;
 }
 
 .about-text em { font-style: italic; color: var(--accent); }
 
 .about-meta {
     margin-top: 32px;
-    text-align: center;
+    text-align: left;
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
 
 .about-meta span {
-    font-size: 11px;
+    font-size: 15px;
     letter-spacing: 0.15em;
     color: var(--muted);
 }
@@ -687,26 +702,38 @@ body.is-loading { overflow: hidden; height: 100vh; }
     animation: pl-zoom 0.95s cubic-bezier(.7,0,.3,1) 3.2s forwards;
 }
 
-/* solid white horizontal lines that glide in from each edge to the centre */
+/* dotted white lines that glide in from each edge to the centre */
 .pl-rule {
     position: absolute;
     top: 50%;
     width: 50%;
-    height: 3px;
-    background: #fff;
+    height: 4px;
+    background: transparent;
+    background-image: radial-gradient(circle, #fff 45%, transparent 50%);
+    background-size: 16px 4px;
+    background-repeat: repeat-x;
+    background-position: center;
     will-change: transform;
 }
 
 .pl-rule-left {
     left: 0;
     transform: translateY(-50%) translateX(-100%);
-    animation: pl-slide-left 1.1s cubic-bezier(.16,1,.3,1) 0.3s forwards;
+    /* trailing dots (left side) fade out like a comet tail */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 78%);
+            mask-image: linear-gradient(to right, transparent 0%, #000 78%);
+    animation: pl-slide-left 1.2s cubic-bezier(.16,1,.3,1) 0.3s forwards,
+               pl-march-right 0.55s linear 0s infinite;
 }
 
 .pl-rule-right {
     right: 0;
     transform: translateY(-50%) translateX(100%);
-    animation: pl-slide-right 1.1s cubic-bezier(.16,1,.3,1) 0.3s forwards;
+    /* trailing dots (right side) fade out like a comet tail */
+    -webkit-mask-image: linear-gradient(to left, transparent 0%, #000 78%);
+            mask-image: linear-gradient(to left, transparent 0%, #000 78%);
+    animation: pl-slide-right 1.2s cubic-bezier(.16,1,.3,1) 0.3s forwards,
+               pl-march-left 0.55s linear 0s infinite;
 }
 
 @keyframes pl-slide-left {
@@ -715,6 +742,17 @@ body.is-loading { overflow: hidden; height: 100vh; }
 
 @keyframes pl-slide-right {
     to { transform: translateY(-50%) translateX(0); }
+}
+
+/* dots streaming toward the centre */
+@keyframes pl-march-right {
+    from { background-position-x: 0; }
+    to   { background-position-x: 16px; }
+}
+
+@keyframes pl-march-left {
+    from { background-position-x: 0; }
+    to   { background-position-x: -16px; }
 }
 
 /* clean geometric wordmark — appears after the two lines connect */
