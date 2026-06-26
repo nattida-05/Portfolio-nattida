@@ -1,3 +1,5 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jersey+25&family=VT323&display=swap');
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
@@ -11,7 +13,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-    font-family: 'DM Mono', monospace;
+    font-family: "VT323", monospace;    
     background: var(--bg);
     color: var(--ink);
     overflow-x: hidden;
@@ -30,11 +32,11 @@ nav {
 }
 
 .logo {
-    font-family: 'Cormorant Garamond', serif;
+     font-family: "VT323", monospace;
     font-size: 16px;
     font-weight: 400;
     letter-spacing: 0.18em;
-    color: var(--ink);
+    color: var(--muted);
     text-transform: uppercase;
 }
 
@@ -77,7 +79,7 @@ nav ul a:hover { color: var(--ink); }
     background: transparent;
     color: var(--ink);
     cursor: pointer;
-    font-family: 'DM Mono', monospace;
+    font-family: "VT323", monospace;
     font-size: 18px;
     line-height: 1;
     transition: background 0.25s, border-color 0.25s;
@@ -107,23 +109,27 @@ nav ul a:hover { color: var(--ink); }
     background-position: center;
     background-repeat: no-repeat;
     z-index: 0;
+   
 }
 
 /* ฝ้าทึบบางๆ ทับรูป เพื่อให้อ่านตัวหนังสือง่ายขึ้น (ปรับค่า 0.45 ได้) */
 .hero-bg::after {
+    
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
 }
 
-.hero-left {
+.hero-left{
     position: relative;
     z-index: 1;
 }
 
+
+
 /* ทำให้ตัวหนังสือบนรูปแบ็คกราวด์อ่านชัดครบทุกตัว */
 .hero .hero-name {
+    font-family: "VT323", monospace;
     color: #fff;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
 }
@@ -161,7 +167,7 @@ nav ul a:hover { color: var(--ink); }
 }
 
 .hero-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "VT323", monospace;
     font-size: clamp(64px, 8vw, 112px);
     font-weight: 300;
     line-height: 0.92;
@@ -250,6 +256,7 @@ nav ul a:hover { color: var(--ink); }
 }
 
 .section-label {
+    font-family: "Jersey 25", sans-serif;
     font-size: 10px;
     letter-spacing: 0.3em;
     color: var(--muted);
@@ -276,7 +283,7 @@ nav ul a:hover { color: var(--ink); }
 }
 
 .about-number {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "VT323", monospace;
     font-size: 100px;
     font-weight: 300;
     line-height: 1;
@@ -284,7 +291,7 @@ nav ul a:hover { color: var(--ink); }
 }
 
 .about-text {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "Jersey 25", sans-serif;
     font-size: 28px;
     font-weight: 300;
     line-height: 1.65;
@@ -352,7 +359,7 @@ nav ul a:hover { color: var(--ink); }
 }
 
 .skill-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "VT323", monospace;
     font-size: 22px;
     font-weight: 400;
     color: var(--ink);
@@ -413,7 +420,7 @@ nav ul a:hover { color: var(--ink); }
 }
 
 .perf-card-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "VT323", monospace;
     font-size: 18px;
     font-weight: 400;
     line-height: 1.3;
@@ -504,7 +511,7 @@ nav ul a:hover { color: var(--ink); }
 }
 
 .prod-card-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "VT323", monospace;
     font-size: 36px;
     font-weight: 300;
     line-height: 1.2;
@@ -552,7 +559,7 @@ nav ul a:hover { color: var(--ink); }
 }
 
 .contact-heading {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "VT323", monospace;
     font-size: clamp(48px, 6vw, 80px);
     font-weight: 300;
     line-height: 1.05;
@@ -581,7 +588,7 @@ nav ul a:hover { color: var(--ink); }
 }
 
 .contact-value {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: "VT323", monospace;
     font-size: 18px;
     color: var(--ink);
 }
@@ -635,7 +642,7 @@ footer span {
     text-transform: uppercase;
     background: none;
     border: none;
-    font-family: 'DM Mono', monospace;
+    font-family: "VT323", monospace;
     transition: color 0.2s;
 }
 
@@ -718,7 +725,7 @@ body.is-loading { overflow: hidden; height: 100vh; }
     margin: 0;
     padding: 0 clamp(16px, 3.5vw, 48px);
     background: #000;            /* masks the lines behind the word */
-    font-family: 'Montserrat', sans-serif;
+    font-family: "VT323", monospace;
     font-weight: 400;
     font-size: clamp(40px, 9vw, 120px);
     letter-spacing: 0.04em;
