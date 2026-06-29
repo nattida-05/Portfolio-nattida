@@ -22,9 +22,17 @@
     const nav = document.getElementById('mainNav');
     const navToggle = document.querySelector('.nav-toggle');
 
-    window.addEventListener('scroll', function () {
-        if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
-    });
+    // NAV — flip colours once the dark hero scrolls past, so the bar stays readable
+    var hero = document.querySelector('.hero');
+    if (nav) {
+        var syncNav = function () {
+            var threshold = hero ? hero.offsetHeight - 80 : 80;
+            nav.classList.toggle('nav-scrolled', window.scrollY > threshold);
+        };
+        window.addEventListener('scroll', syncNav, { passive: true });
+        window.addEventListener('resize', syncNav);
+        syncNav();
+    }
 
     if (navToggle && nav) {
         navToggle.addEventListener('click', function () {
@@ -41,12 +49,6 @@
             });
         });
     }
-    var slide = document.querySelector('.slide-bg');
-    if (slide && slide.dataset.src) {
-    slide.style.backgroundImage = "url('" + slide.dataset.src + "')";
-    slide.classList.add('active');
-    }
-
     var track = document.getElementById('prodTrack');
 
     var lightbox = document.getElementById('lightbox');
@@ -238,15 +240,3 @@
         observer.observe(f);
     });
 })();
-// track.addEventListener('click', function (e) {
-
-//     // ถ้าคลิกลิงก์ Figma ให้เปิดลิงก์ ไม่ต้องเปิด Lightbox
-//     if (e.target.closest('.perf-card-link')) return;
-
-//     var card = e.target.closest('[data-lightbox-src]');
-//     if (!card) return;
-
-//     e.preventDefault();
-//     openLightbox(card.getAttribute('data-lightbox-src'));
-
-// });

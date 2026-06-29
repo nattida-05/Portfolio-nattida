@@ -38,7 +38,18 @@ nav {
     align-items: center;
     justify-content: space-between;
     padding: 28px 64px;
+    /* default: sitting over the dark hero image — light text */
     background: transparent;
+    --nav-ink: #ffffff;
+    transition: background 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* scrolled onto the white content sections — flip to a light bar + dark text */
+nav.nav-scrolled {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 var(--line);
+    --nav-ink: var(--ink);
 }
 
 .logo {
@@ -46,8 +57,9 @@ nav {
     font-size: 18px;
     font-weight: 400;
     letter-spacing: 0.18em;
-    color: #000;
+    color: var(--nav-ink);
     text-transform: uppercase;
+    transition: color 0.35s ease;
 }
 
 .nav-end {
@@ -71,14 +83,14 @@ nav ul {
 nav ul a {
     font-size: 16px;
     letter-spacing: 0.2em;
-    color: #000;
+    color: var(--nav-ink);
     text-decoration: none;
     text-transform: uppercase;
     transition: color 0.25s;
 }
 
 nav ul a:hover {
-    color: var(--ink);
+    opacity: 0.6;
 }
 
 .nav-toggle {
@@ -87,20 +99,23 @@ nav ul a:hover {
     justify-content: center;
     width: 44px;
     height: 44px;
-    border: 1px solid var(--line);
+    border: 1px solid currentColor;
     background: transparent;
-    color: var(--ink);
+    color: var(--nav-ink);
     cursor: pointer;
     font-family: "Fira Sans", sans-serif;
     font-size: 18px;
     line-height: 1;
-    transition: background 0.25s, border-color 0.25s;
+    transition: background 0.25s, border-color 0.25s, color 0.35s ease;
 }
 
 .nav-toggle:hover {
-    background: var(--ink);
-    color: var(--bg);
-    border-color: var(--ink);
+    background: rgba(128, 128, 128, 0.18);
+}
+
+/* when the mobile menu is open it overlays a white panel — keep controls dark */
+nav.nav-open {
+    --nav-ink: var(--ink);
 }
 
 /* HERO */
@@ -124,20 +139,10 @@ nav ul a:hover {
 
 }
 
-/* ฝ้าทึบบางๆ ทับรูป เพื่อให้อ่านตัวหนังสือง่ายขึ้น (ปรับค่า 0.45 ได้) */
-.hero-bg::after {
-
-    content: '';
-    position: absolute;
-    inset: 0;
-}
-
 .hero-left {
     position: relative;
     z-index: 1;
 }
-
-
 
 /* ทำให้ตัวหนังสือบนรูปแบ็คกราวด์อ่านชัดครบทุกตัว */
 .hero .hero-name {
@@ -181,11 +186,6 @@ nav ul a:hover {
     color: var(--ink);
 }
 
-.hero-name em {
-    font-style: italic;
-    color: #ffffff;
-}
-
 .hero-roles {
     margin-top: 40px;
     display: flex;
@@ -198,69 +198,6 @@ nav ul a:hover {
     letter-spacing: 0.15em;
     color: #ffffff;
     text-transform: uppercase;
-}
-
-.hero-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding: 80px 64px;
-    background: var(--ink);
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-right .slide-bg {
-    position: absolute;
-    inset: 0;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1.8s ease-in-out;
-}
-
-.hero-right .slide-bg.active {
-    opacity: 1;
-}
-
-.slide-counter {
-    position: relative;
-    z-index: 2;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    color: rgba(248, 246, 242, 0.35);
-    margin-bottom: auto;
-    align-self: flex-start;
-}
-
-.hero-cta {
-    position: relative;
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--bg);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(248, 246, 242, 0.25);
-    padding-bottom: 6px;
-    transition: color 0.3s, border-color 0.3s;
-}
-
-.hero-cta:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-}
-
-.hero-cta svg {
-    transition: transform 0.3s;
-}
-
-.hero-cta:hover svg {
-    transform: translateX(4px);
 }
 
 /* SECTION BASE */
@@ -310,14 +247,6 @@ nav ul a:hover {
     object-fit: cover;
     border-radius: 4px;
     display: block;
-}
-
-.about-number {
-    font-family: "Fira Sans", sans-serif;
-    font-size: 100px;
-    font-weight: 300;
-    line-height: 1;
-    color: var(--line);
 }
 
 .about-text {
@@ -387,25 +316,6 @@ nav ul a:hover {
     object-fit: contain;
 }
 
-.skill-item:hover {
-    background: var(--ink);
-}
-
-.skill-item:hover .skill-name {
-    color: var(--bg);
-}
-
-.skill-item:hover .skill-num {
-    color: var(--accent);
-}
-
-.skill-num {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    transition: color 0.3s;
-}
-
 .skill-name {
     font-family: "Fira Sans", sans-serif;
     font-size: 20px;
@@ -413,138 +323,6 @@ nav ul a:hover {
     color: var(--ink);
     line-height: 1.2;
     transition: color 0.3s;
-}
-
-/* PERFORMANCE */
-#performance {
-    border-top: 1px solid var(--line);
-}
-
-
-.perf-track {
-    margin-top: 56px;
-    display: flex;
-    gap: 28px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    padding-bottom: 24px;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    cursor: grab;
-}
-
-.perf-track::-webkit-scrollbar {
-    display: none;
-}
-
-.perf-track.is-dragging {
-    cursor: grabbing;
-    scroll-snap-type: none;
-}
-
-.perf-track.is-dragging a {
-    pointer-events: none;
-}
-
-.perf-card {
-    flex: 0 0 100%;
-    scroll-snap-align: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border: 1px solid var(--line);
-    overflow: hidden;
-    cursor: pointer;
-    transition: border-color 0.3s, transform 0.4s;
-    text-decoration: none;
-    color: inherit;
-    background: var(--bg);
-}
-
-.perf-card:hover {
-    border-color: var(--accent);
-}
-
-.perf-card-img {
-    width: 100%;
-    height: 100%;
-    min-height: 420px;
-    object-fit: cover;
-    display: block;
-    background: var(--line);
-    filter: grayscale(25%);
-    transition: filter 0.4s, transform 0.4s;
-    pointer-events: none;
-}
-
-.perf-card:hover .perf-card-img {
-    filter: grayscale(0%);
-    transform: scale(1.04);
-}
-
-.perf-card-body {
-    padding: 60px 56px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.perf-card-tag {
-    font-size: 12px;
-    letter-spacing: 0.3em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
-
-.perf-card-title {
-    font-family: "Fira Sans", sans-serif;
-    font-size: 36px;
-    font-weight: 300;
-    line-height: 1.2;
-    color: var(--ink);
-    margin-bottom: 16px;
-}
-
-.perf-card-desc {
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--muted);
-    line-height: 1.8;
-    letter-spacing: 0.01em;
-    margin-bottom: 8px;
-}
-
-.perf-card-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    align-self: flex-start;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-top: 24px;
-    border-bottom: 1px solid var(--line);
-    padding-bottom: 6px;
-}
-
-/* light arrow variant for Academic Project (on white bg) */
-.prod-arrow-light {
-    border-color: var(--line);
-    color: var(--ink);
-}
-
-.prod-arrow-light:hover {
-    background: var(--ink);
-    color: var(--bg);
-    border-color: var(--ink);
-}
-
-.prod-arrow-light:disabled:hover {
-    background: transparent;
-    color: var(--ink);
-    border-color: var(--line);
 }
 
 /* PRODUCTION */
@@ -710,38 +488,6 @@ nav ul a:hover {
     line-height: 1.7;
     letter-spacing: 0.04em;
     margin-bottom: 24px;
-}
-
-.prod-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--bg);
-    text-decoration: none;
-    border: 1px solid transparent;
-    border-bottom-color: rgba(248, 246, 242, 0.25);
-    padding: 12px 22px;
-    margin-left: -22px;
-    align-self: flex-start;
-    cursor: pointer;
-    transition: color 0.3s, border-color 0.3s, background 0.3s;
-}
-
-.prod-btn:hover {
-    color: var(--bg);
-    border-color: #fff;
-    background: rgba(255, 255, 255, 0.06);
-}
-
-.prod-btn svg {
-    transition: transform 0.3s;
-}
-
-.prod-btn:hover svg {
-    transform: translateX(4px);
 }
 
 /* CONTACT */
@@ -1190,6 +936,8 @@ body.is-loading {
     nav {
         padding: 20px 32px;
         position: relative;
+        /* nav now sits on the white page (not over the hero) — keep text dark */
+        --nav-ink: var(--ink);
     }
 
     .nav-toggle {
@@ -1228,10 +976,6 @@ body.is-loading {
         padding: 80px 32px;
     }
 
-    .hero-right {
-        min-height: 40vh;
-    }
-
     .section {
         padding: 80px 32px;
     }
@@ -1243,10 +987,6 @@ body.is-loading {
 
     .about-text {
         font-size: 22px;
-    }
-
-    .about-number {
-        font-size: 60px;
     }
 
     .skills-grid {
@@ -1270,24 +1010,6 @@ body.is-loading {
 
     .prod-card-body {
         padding: 36px 32px 40px;
-    }
-
-    /* Academic carousel */
-    .perf-card {
-        flex: 0 0 100%;
-        grid-template-columns: 1fr;
-    }
-
-    .perf-card-img {
-        min-height: 240px;
-    }
-
-    .perf-card-body {
-        padding: 36px 32px 40px;
-    }
-
-    .perf-card-title {
-        font-size: 28px;
     }
 
     .production-inner {
@@ -1340,14 +1062,20 @@ body.is-loading {
         font-size: clamp(48px, 16vw, 72px);
     }
 
-    /* Academic + Production carousels */
-    .perf-card-body,
-    .prod-card-body {
-        padding: 28px 24px 32px;
+    /* stack contact rows so long emails don't overflow */
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
     }
 
-    .perf-card-title {
-        font-size: 26px;
+    .contact-value {
+        font-size: 16px;
+        word-break: break-word;
+    }
+
+    .prod-card-body {
+        padding: 28px 24px 32px;
     }
 
     .production-inner {
