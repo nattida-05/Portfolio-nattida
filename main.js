@@ -76,21 +76,37 @@
         lightboxImg.src = '';
     }
 
-    if (track) {
-        track.addEventListener('click', function (e) {
-            var card = e.target.closest('[data-lightbox-src]');
-            if (!card || !track.contains(card)) return;
-            e.preventDefault();
-            openLightbox(card.getAttribute('data-lightbox-src'));
-        });
-        track.addEventListener('keydown', function (e) {
-            if (e.key !== 'Enter' && e.key !== ' ') return;
-            var card = e.target.closest('[data-lightbox-src]');
-            if (!card || !track.contains(card)) return;
-            e.preventDefault();
-            openLightbox(card.getAttribute('data-lightbox-src'));
-        });
-    }
+  if (track) {
+
+    // Click
+    track.addEventListener('click', function (e) {
+
+        // ถ้าคลิกลิงก์ ให้เปิดลิงก์ ไม่ต้องเปิด Lightbox
+        if (e.target.closest('a')) return;
+
+        var card = e.target.closest('[data-lightbox-src]');
+        if (!card || !track.contains(card)) return;
+
+        e.preventDefault();
+        openLightbox(card.getAttribute('data-lightbox-src'));
+    });
+
+    // Keyboard
+    track.addEventListener('keydown', function (e) {
+
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+
+        // ถ้าโฟกัสอยู่ที่ลิงก์ ให้ Browser จัดการเอง
+        if (document.activeElement.tagName === 'A') return;
+
+        var card = e.target.closest('[data-lightbox-src]');
+        if (!card || !track.contains(card)) return;
+
+        e.preventDefault();
+        openLightbox(card.getAttribute('data-lightbox-src'));
+    });
+
+}
 
     var closeBtn = document.querySelector('.lightbox-close');
     if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
@@ -120,3 +136,15 @@
         observer.observe(f);
     });
 })();
+// track.addEventListener('click', function (e) {
+
+//     // ถ้าคลิกลิงก์ Figma ให้เปิดลิงก์ ไม่ต้องเปิด Lightbox
+//     if (e.target.closest('.perf-card-link')) return;
+
+//     var card = e.target.closest('[data-lightbox-src]');
+//     if (!card) return;
+
+//     e.preventDefault();
+//     openLightbox(card.getAttribute('data-lightbox-src'));
+
+// });

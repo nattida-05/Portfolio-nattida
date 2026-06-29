@@ -374,7 +374,7 @@ nav ul a:hover { color: var(--ink); }
 }
 
 .skill-name {
-    font-family: "VT323", monospace;
+    font-family: "Fira Sans", sans-serif;
     font-size: 22px;
     font-weight: 400;
     color: var(--ink);
@@ -435,7 +435,7 @@ nav ul a:hover { color: var(--ink); }
 }
 
 .perf-card-title {
-    font-family: "VT323", monospace;
+    font-family: "Fira Sans", sans-serif;
     font-size: 18px;
     font-weight: 400;
     line-height: 1.3;
@@ -520,7 +520,7 @@ nav ul a:hover { color: var(--ink); }
 .prod-card-tag {
     font-size: 9px;
     letter-spacing: 0.3em;
-    color: var(--accent);
+    color: #ffffff;
     text-transform: uppercase;
     margin-bottom: 20px;
 }

@@ -21,7 +21,7 @@
         </div>
     </div>
     <nav id="mainNav">
-    
+
         <div class="logo">Natthida</div>
         <div class="nav-end">
             <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false"
@@ -38,26 +38,25 @@
 
     <header class="hero">
 
-    <div class="hero-bg"
-         style="background-image: url('img/วาฬ.jpg');"></div>
+        <div class="hero-bg" style="background-image: url('img/วาฬ.jpg');"></div>
 
-    <div class="hero-left">
+        <div class="hero-left">
 
-        <div class="hero-eyebrow">Portfolio — 2026</div>
+            <div class="hero-eyebrow">Portfolio — 2026</div>
 
-        <h1 class="hero-name">
-            Welcome<em>to</em><br>Portfolio Natthida 
-        </h1>
+            <h1 class="hero-name">
+                Welcome<em>to</em><br>Portfolio Natthida
+            </h1>
 
-        <div class="hero-roles">
-            <span>Web Developer</span>
-            <span>UI / UX Designer</span>
-            <span>Digital Industrial Integration</span>
+            <div class="hero-roles">
+                <span>Web Developer</span>
+                <span>UI / UX Designer</span>
+                <span>Digital Industrial Integration</span>
+            </div>
+
         </div>
 
-    </div>
-
-</header>
+    </header>
 
     <section id="about" class="section">
         <div class="section-label">
@@ -103,8 +102,10 @@
                 <img class="skill-icon" src="img/qa.jpg" alt="QA Testing Icon">
                 <span class="skill-name">QA Testing</span>
             </div>
-
-        </div>
+            <div class="skill-item">
+                <img class="skill-icon" src="img\swift.png" alt="SWIFT Code Icon">
+                <span class="skill-name">SWIFT Code</span>
+            </div>
     </section>
 
     <section id="performance" class="section" style="border-top:none;">
@@ -117,17 +118,38 @@
                 <div class="perf-card" data-lightbox-src="img/ProductProject.png" role="button" tabindex="0">
                     <img class="perf-card-img" src="img/ProductProject.png" alt="Project 1">
                     <div class="perf-card-body">
-                        <p class="perf-card-tag">Web · Product</p>
+                        <p class="perf-card-tag">Web · Product · Design</p>
                         <h3 class="perf-card-title">Babor Core Teak — Product Website</h3>
                     </div>
                 </div>
 
-                <div class="perf-card" data-lightbox-src="img/เข้าระบบ.png" role="button" tabindex="0">
-                    <img class="perf-card-img" src="img/เข้าระบบ.png" alt="Project 2">
+                <div class="perf-card" data-lightbox-src="img/Geo.png" role="button" tabindex="0">
+
+                    <img class="perf-card-img" src="img/Geo.png" alt="Geo Project">
+
                     <div class="perf-card-body">
-                        <p class="perf-card-tag">Web · Auth</p>
-                        <h3 class="perf-card-title">Login Web Page</h3>
+
+                        <p class="perf-card-tag">
+                            Web · Design
+                        </p>
+
+                        <h3 class="perf-card-title">
+                            Designed and Developed Web Pages
+                        </h3>
+
+                        <a class="perf-card-link" href="https://geo-care-network.vercel.app/" target="_blank"
+                            rel="noopener noreferrer">
+
+                            View Website
+
+                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                <path d="M1 4H11M11 4L8 1M11 4L8 7" stroke="currentColor" stroke-width="1.2" />
+                            </svg>
+
+                        </a>
+
                     </div>
+
                 </div>
 
                 <div class="perf-card" data-lightbox-src="img/open1.png" role="button" tabindex="0">
@@ -159,7 +181,7 @@
                     target="_blank" rel="noopener noreferrer">
                     <img class="perf-card-img" src="img/CourseReviewHub.png" alt="CourseReviewHub">
                     <div class="perf-card-body">
-                        <p class="perf-card-tag">UI/UX · Hackathon</p>
+                        <p class="perf-card-tag">UI/UX · Hackathon · Front-end</p>
                         <h3 class="perf-card-title">CourseReviewHub — UI Design</h3>
                         <span class="perf-card-link">
                             View Figma
@@ -229,10 +251,21 @@
         <span>Web Developer · UI/UX Designer</span>
     </footer>
 
-    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
-        <button type="button" class="lightbox-close">✕ Close</button>
-        <img id="lightboxImg" src="" alt="">
+     </div>
+
+            <div class="modal-buttons">
+                <a id="modalWebsite"
+                   target="_blank">
+                   Website
+                </a>
+                <a id="modalFigma"
+                   target="_blank">
+                   Figma
+                </a>
+            </div>
+        </div>
     </div>
+</div>
 
     <script src="main.js" defer></script>
 </body>
