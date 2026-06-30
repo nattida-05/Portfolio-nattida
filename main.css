@@ -58,6 +58,7 @@ nav.nav-scrolled {
     font-weight: 400;
     letter-spacing: 0.18em;
     color: var(--nav-ink);
+    text-decoration: none;
     text-transform: uppercase;
     transition: color 0.35s ease;
 }
@@ -86,11 +87,13 @@ nav ul a {
     color: var(--nav-ink);
     text-decoration: none;
     text-transform: uppercase;
-    transition: color 0.25s;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color 0.25s, border-color 0.25s;
 }
 
 nav ul a:hover {
-    opacity: 0.6;
+    border-bottom-color: currentColor;
 }
 
 .nav-toggle {
@@ -533,7 +536,7 @@ nav.nav-open {
 }
 
 .contact-label {
-    font-size: 9px;
+    font-size: 12px;
     letter-spacing: 0.25em;
     color: var(--muted);
     text-transform: uppercase;
@@ -935,8 +938,10 @@ body.is-loading {
 @media (max-width: 900px) {
     nav {
         padding: 20px 32px;
-        position: relative;
-        /* nav now sits on the white page (not over the hero) — keep text dark */
+        position: fixed;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 1px 0 var(--line);
         --nav-ink: var(--ink);
     }
 
@@ -970,6 +975,7 @@ body.is-loading {
 
     .hero {
         grid-template-columns: 1fr;
+        padding-top: 64px;
     }
 
     .hero-left {
@@ -990,7 +996,16 @@ body.is-loading {
     }
 
     .skills-grid {
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background: var(--bg);
+        border: none;
+        gap: 16px;
+    }
+
+    .skills-grid .skill-item {
+        flex: 0 0 calc(50% - 8px);
     }
 
     .contact-grid {
@@ -1047,10 +1062,20 @@ body.is-loading {
     }
 
     .skills-grid {
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background: var(--bg);
+        border: none;
+        gap: 16px;
+    }
+
+    .skills-grid .skill-item {
+        flex: 0 0 calc(50% - 8px);
     }
 
     .skill-item {
+        border: 1px solid var(--ink);
         padding: 28px 16px;
     }
 
