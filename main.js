@@ -1,23 +1,8 @@
 (function () {
     'use strict';
 
-    // PRELOADER — unlock the page once the intro finishes
-    var preloader = document.getElementById('preloader');
-    if (preloader) {
-        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var done = reduce ? 900 : 4200;
-        var finish = function () {
-            preloader.classList.add('pl-done');
-            document.body.classList.remove('is-loading');
-        };
-        window.setTimeout(finish, done);
-        // safety net if a CSS animation never fires
-        preloader.addEventListener('animationend', function (e) {
-            if (e.target === preloader) finish();
-        });
-    } else {
-        document.body.classList.remove('is-loading');
-    }
+    // PRELOADER lifecycle (fade-in, slot-machine reveal, fade-out) is handled
+    // by preloader.js, which also removes body.is-loading when it finishes.
 
     const nav = document.getElementById('mainNav');
     const navToggle = document.querySelector('.nav-toggle');
@@ -49,7 +34,7 @@
             });
         });
     }
-    var track = document.getElementById('prodTrack');
+    var track = document.getElementById('worksList');
 
     var lightbox = document.getElementById('lightbox');
     var lightboxGallery = document.getElementById('lightboxGallery');
@@ -151,78 +136,104 @@
         if (e.key === 'Escape') closeLightbox();
     });
 
-    // CAROUSEL — arrows, drag-to-scroll, snap (reused by Production + Academic)
-    function initCarousel(trackEl, prevBtn, nextBtn, cardSelector) {
-        if (!trackEl) return;
+    // SITE-WIDE CURSOR — a minimal whale that follows the pointer with easing,
+    // gently swims (tilt + float) as it moves, and morphs into the black
+    // "VIEW" circle over Works project images. Desktop (fine pointer) only.
+    function initSiteCursor() {
+        var cursor = document.getElementById('siteCursor');
+        if (!cursor || typeof gsap === 'undefined') return;
 
-        var step = function () {
-            var card = trackEl.querySelector(cardSelector);
-            var gap = parseInt(getComputedStyle(trackEl).columnGap || getComputedStyle(trackEl).gap || '28', 10) || 28;
-            return card ? card.offsetWidth + gap : 360;
-        };
+        var fineHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!fineHover || reduceMotion) return;
 
-        var updateArrows = function () {
-            if (!prevBtn || !nextBtn) return;
-            var max = trackEl.scrollWidth - trackEl.clientWidth - 2;
-            prevBtn.disabled = trackEl.scrollLeft <= 2;
-            nextBtn.disabled = trackEl.scrollLeft >= max;
-        };
+        var whaleInner = document.getElementById('siteCursorWhaleInner');
 
-        if (prevBtn) prevBtn.addEventListener('click', function () {
-            trackEl.scrollBy({ left: -step(), behavior: 'smooth' });
-        });
-        if (nextBtn) nextBtn.addEventListener('click', function () {
-            trackEl.scrollBy({ left: step(), behavior: 'smooth' });
-        });
+        var xTo = gsap.quickTo(cursor, 'x', { duration: 0.45, ease: 'power3' });
+        var yTo = gsap.quickTo(cursor, 'y', { duration: 0.45, ease: 'power3' });
 
-        trackEl.addEventListener('scroll', updateArrows, { passive: true });
-        window.addEventListener('resize', updateArrows);
-        updateArrows();
+        var revealed = false;
+        var lastX = null;
+        var velX = 0;
 
-        // Drag / swipe to scroll (pointer events cover mouse + touch)
-        var isDown = false, startX = 0, startScroll = 0, moved = false;
-
-        trackEl.addEventListener('pointerdown', function (e) {
-            if (e.pointerType === 'mouse' && e.button !== 0) return;
-            isDown = true;
-            moved = false;
-            startX = e.clientX;
-            startScroll = trackEl.scrollLeft;
-        });
-
-        trackEl.addEventListener('pointermove', function (e) {
-            if (!isDown) return;
-            var dx = e.clientX - startX;
-            if (Math.abs(dx) > 4 && !moved) {
-                moved = true;
-                trackEl.classList.add('is-dragging');
-                if (trackEl.setPointerCapture) trackEl.setPointerCapture(e.pointerId);
+        document.addEventListener('pointermove', function (e) {
+            if (!revealed) {
+                revealed = true;
+                gsap.to(cursor, { opacity: 1, duration: 0.3 });
             }
-            if (moved) trackEl.scrollLeft = startScroll - dx;
+            if (lastX !== null) velX = e.clientX - lastX;
+            lastX = e.clientX;
+            xTo(e.clientX);
+            yTo(e.clientY);
         });
 
-        var endDrag = function () {
-            if (!isDown) return;
-            isDown = false;
-            trackEl.classList.remove('is-dragging');
-            updateArrows();
-        };
-        trackEl.addEventListener('pointerup', endDrag);
-        trackEl.addEventListener('pointercancel', endDrag);
-        trackEl.addEventListener('pointerleave', endDrag);
+        document.documentElement.addEventListener('pointerleave', function () {
+            revealed = false;
+            gsap.to(cursor, { opacity: 0, duration: 0.3 });
+        });
 
-        // suppress the click that fires after a drag
-        trackEl.addEventListener('click', function (e) {
-            if (moved) { e.preventDefault(); e.stopPropagation(); }
-        }, true);
+        // Continuous "swim": tilt eases toward the current horizontal velocity
+        // and decays back to level when the pointer stops, plus a slow float bob.
+        // Driven by a raw transform write (not GSAP) so it never fights the
+        // CSS transitions that handle the hover scale / morph states.
+        if (whaleInner) {
+            var rotation = 0;
+            var bobStart = performance.now();
+            (function tick() {
+                var targetRotation = Math.max(-18, Math.min(18, velX * 1.5));
+                rotation += (targetRotation - rotation) * 0.12;
+                velX *= 0.82;
+                var bob = Math.sin((performance.now() - bobStart) / 900) * 3;
+                whaleInner.style.transform = 'rotate(' + rotation.toFixed(2) + 'deg) translateY(' + bob.toFixed(2) + 'px)';
+                requestAnimationFrame(tick);
+            })();
+        }
+
+        // Links/buttons — whale scales up slightly.
+        document.querySelectorAll('a, button, [role="button"], input, select, textarea').forEach(function (el) {
+            el.addEventListener('pointerenter', function () { cursor.classList.add('is-link-hover'); });
+            el.addEventListener('pointerleave', function () { cursor.classList.remove('is-link-hover'); });
+        });
+
+        // Works project images — morph the whale into the "VIEW" circle.
+        document.querySelectorAll('.work-item-media').forEach(function (media) {
+            media.addEventListener('pointerenter', function () { cursor.classList.add('is-view-hover'); });
+            media.addEventListener('pointerleave', function () { cursor.classList.remove('is-view-hover'); });
+        });
     }
 
-    initCarousel(
-        document.getElementById('prodTrack'),
-        document.getElementById('prodPrev'),
-        document.getElementById('prodNext'),
-        '.prod-card'
-    );
+    // WORKS — each project gently fades and slides in as it scrolls into view
+    function initWorksReveal(trackEl) {
+        if (!trackEl) return;
+        var items = trackEl.querySelectorAll('.work-item');
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (reduceMotion || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+            items.forEach(function (item) {
+                item.style.opacity = '1';
+                item.style.transform = 'none';
+            });
+            return;
+        }
+
+        gsap.registerPlugin(ScrollTrigger);
+        items.forEach(function (item) {
+            gsap.to(item, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 82%',
+                    once: true
+                }
+            });
+        });
+    }
+
+    initSiteCursor();
+    initWorksReveal(track);
 
     var faders = document.querySelectorAll('.fade-in');
     var observer = new IntersectionObserver(
