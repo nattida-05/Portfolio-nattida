@@ -31,6 +31,7 @@
                 nav.classList.remove('nav-open');
                 navToggle.setAttribute('aria-expanded', 'false');
                 navToggle.textContent = '☰';
+                closeLightbox();
             });
         });
     }
